@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Bem vindo</h1>
-    <form action="/teste">
-        <input type="text" id="album"/>
-        <input type="number" id="nota"/>
-        <button>SUBMIT</button>
-    </form>
-
-    <h2>Lista de álbuns</h2>
-    <ul id="lista"></ul>
-
+    <div>
+        <h1>Bem vindo</h1>
+        <form action="/teste">
+            <input type="text" id="album" placeholder="Adicionar álbum"/>
+            <input type="number" id="nota" placeholder="Nota do álbum"/>
+            <button>SUBMIT</button>
+        </form>
+        <h2>Lista de álbuns</h2>
+        <ul id="lista"></ul>
+    </div>
     <script src="app.js"></script>
 </body>
+
 </html>
