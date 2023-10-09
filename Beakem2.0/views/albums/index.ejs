@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albums</title>
+</head>
+<body>
+    <h1>Albums</h1>
+    <ul>
+        <% for(let a of albums){ %>
+            <li> <%= a.album %> - <%= a.rate %>  </li>
+        <% } %> 
+    </ul>
+</body>
+</html>
