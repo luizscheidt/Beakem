@@ -44,7 +44,7 @@ app.get('/albums/new', (req, res)=>{
 app.post('/albums', (req, res)=>{
     const {album, rate} = req.body;
     albums.push({album, rate})
-    res.send('Deu boa fml')
+    res.redirect('/albums')
 })
 
 
