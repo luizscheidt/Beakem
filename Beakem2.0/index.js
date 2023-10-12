@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+const methodOverride = require("method-override");
 
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -60,17 +62,20 @@ app.get("/albums/:id", (req, res) => {
   res.render("albums/show", { album });
 });
 
-// app.post('/album', (req, res)=>{
-//     const {album, rating} = req.body;
-//     if(rating>= 70){
-//         res.send(`Great, you gave ${album} a ${rating} rating`)
-//     }else if(rating<= 40){
-//         res.send(`Damn, you gave ${album} a ${rating} rating`)
-//     }else{
-//         res.send(`Meh, you gave ${album} a ${rating} rating`)
-// }
-// })
+app.get("/albums/:id/edit", (req, res) => {
+  const { id } = req.params;
+  const album = albums.find((a) => a.id === id);
+  res.render("albums/edit", { album });
+});
+
+app.patch("/albums/:id", (req, res) => {
+  const { id } = req.params;
+  const newName = req.body.album;
+  const oldName = albums.find((a) => a.id === id);
+  oldName.album = newName;
+  res.redirect("/albums");
+});
 
 app.listen(2000, () => {
-  console.log("lsitening on port 2000");
+  console.log("listening on port 2000");
 });
