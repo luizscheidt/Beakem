@@ -9,7 +9,7 @@ app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-const albums = [
+let albums = [
   {
     id: uuidv4(),
     album: "Rumours",
@@ -73,6 +73,12 @@ app.patch("/albums/:id", (req, res) => {
   const newName = req.body.album;
   const oldName = albums.find((a) => a.id === id);
   oldName.album = newName;
+  res.redirect("/albums");
+});
+
+app.delete("/albums/:id", (req, res) => {
+  const { id } = req.params;
+  albums = albums.filter((n) => n.id !== id);
   res.redirect("/albums");
 });
 

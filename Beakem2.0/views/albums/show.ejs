@@ -11,5 +11,8 @@
 
     <a href="/albums">Back to your list</a>
     <a href="/albums/<%= album.id %>/edit">Edit this album's info</a>
+    <form method="POST" action="/albums/<%=album.id%>?_method=DELETE">
+      <button>Delete this album</button>
+    </form>
   </body>
 </html>
