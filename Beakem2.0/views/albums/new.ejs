@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New</title>
-  </head>
+<%- include('partials/head.ejs') %>
+
   <body>
     <h1>Add a new album</h1>
     <form action="/albums" method="post">
@@ -17,5 +12,6 @@
     </form>
 
     <a href="/albums">See your album list</a>
+    <%- include('partials/footer.ejs') %>
   </body>
 </html>

@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Show</title>
-  </head>
+<%- include('partials/head.ejs') %>
+
   <body>
     <h1><%= album.album %> // id: #<%= album.id %></h1>
     <h2>You rated this album a <%= album.rate %></h2>
@@ -14,5 +9,7 @@
     <form method="POST" action="/albums/<%=album.id%>?_method=DELETE">
       <button>Delete this album</button>
     </form>
+
+    <%- include('partials/footer.ejs') %>
   </body>
 </html>

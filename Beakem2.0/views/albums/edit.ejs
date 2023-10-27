@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit</title>
-  </head>
+<%- include('partials/head.ejs') %>
+
   <body>
     <h1>What do you want to change in your album?</h1>
     <form method="POST" action="/albums/<%=album.id%>?_method=PATCH">
@@ -13,5 +8,6 @@
       </textarea>
       <button>Submit your changes</button>
     </form>
+    <%- include('partials/footer.ejs') %>
   </body>
 </html>
