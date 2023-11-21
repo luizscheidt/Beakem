@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Album</title>
+  </head>
+  <body>
+    <h1><%= album.name %> <%= album.rating %></h1>
+    <h2><%= album.artist %></h2>
+    <h3>
+      <a href="/albums?artist=<%= album.artist %>"
+        >See all <%= album.artist %> albums you've rated so far</a
+      >
+    </h3>
+
+    <a href="/albums">See all albums</a>
+  </body>
+</html>
