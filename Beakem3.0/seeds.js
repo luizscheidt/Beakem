@@ -2,7 +2,7 @@ const Product = require("./models/album");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/farmStand")
+  .connect("mongodb://127.0.0.1:27017/albumList")
   .then(() => {
     console.log("Mongo connection open");
   })

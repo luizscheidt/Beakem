@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const Album = require("./models/album");
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/farmStand")
+  .connect("mongodb://127.0.0.1:27017/albumList")
   .then(() => {
     console.log("Mongo connection open");
   })
@@ -21,17 +21,6 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-
-// async function order(a, b) {
-//   const albums = await Album.find({});
-//   const orderAlbums = [];
-//   if (a.rating < b.rating) {
-//     orderAlbums.append(b.rating);
-//   } else {
-//     orderAlbums.append(b.rating);
-//   }
-//   return orderAlbums;
-// }
 
 app.get("/albums", async (req, res) => {
   const { artist } = req.query;
@@ -58,6 +47,20 @@ app.get("/albums/:id", async (req, res) => {
   const { id } = req.params;
   const album = await Album.findById(id);
   res.render("albums/details", { album });
+});
+
+app.get("/albums/:id/edit", async (req, res) => {
+  const { id } = req.params;
+  const album = await Album.findById(id);
+  res.render("albums/edit", { album });
+});
+
+app.patch("/albums/:id", async (req, res) => {
+  const { id } = req.params;
+  const album = await Album.findByIdAndUpdate(id, req.body, {
+    runValidators: true,
+  });
+  res.redirect(`/albums/${album._id}`);
 });
 
 app.listen("1200", (req, res) => {
