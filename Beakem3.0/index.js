@@ -22,6 +22,17 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+// async function order(a, b) {
+//   const albums = await Album.find({});
+//   const orderAlbums = [];
+//   if (a.rating < b.rating) {
+//     orderAlbums.append(b.rating);
+//   } else {
+//     orderAlbums.append(b.rating);
+//   }
+//   return orderAlbums;
+// }
+
 app.get("/albums", async (req, res) => {
   const { artist } = req.query;
   if (artist) {

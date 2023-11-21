@@ -6,9 +6,12 @@
     <title>Beakem</title>
   </head>
   <body>
+    <% albums.sort(function (a, b) { %> <%return b.rating - a.rating; %> <% });
+    %>
+
     <h1><%= artist %> Albums</h1>
     <ul>
-      <% for(let album of albums) {%>
+      <% for(let album of albums){%>
       <li>
         <a href="/albums/<%= album._id %>"><%= album.name %></a>
         <%=album.rating%>
@@ -18,7 +21,7 @@
 
     <% if(artist === 'All') {%>
     <a href="/albums/new">Rate a new album</a>
-    <% } %> <% if(artist !== 'All') {%>
+    <% } else{ %>
     <a href="/albums">See all albums</a>
     <% } %>
   </body>
