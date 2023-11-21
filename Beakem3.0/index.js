@@ -63,6 +63,12 @@ app.patch("/albums/:id", async (req, res) => {
   res.redirect(`/albums/${album._id}`);
 });
 
+app.delete("/albums/:id", async (req, res) => {
+  const { id } = req.params;
+  const deletedAlbum = await Album.findByIdAndDelete(id);
+  res.redirect("/albums");
+});
+
 app.listen("1200", (req, res) => {
   console.log("Listening on port 1200");
 });
