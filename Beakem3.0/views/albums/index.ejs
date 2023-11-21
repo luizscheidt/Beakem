@@ -9,11 +9,16 @@
     <h1><%= artist %> Albums</h1>
     <ul>
       <% for(let album of albums) {%>
-      <li><a href="/albums/<%= album._id %>"><%= album.name %></a></li>
+      <li>
+        <a href="/albums/<%= album._id %>"><%= album.name %></a>
+        <%=album.rating%>
+      </li>
       <% } %>
     </ul>
 
-    <% if(artist !== 'All') {%>
+    <% if(artist === 'All') {%>
+    <a href="/albums/new">Rate a new album</a>
+    <% } %> <% if(artist !== 'All') {%>
     <a href="/albums">See all albums</a>
     <% } %>
   </body>

@@ -33,6 +33,16 @@ app.get("/albums", async (req, res) => {
   }
 });
 
+app.get("/albums/new", (req, res) => {
+  res.render("albums/new");
+});
+
+app.post("/albums", async (req, res) => {
+  const newAlbum = new Album(req.body);
+  await newAlbum.save();
+  res.redirect(`albums/${newAlbum._id}`);
+});
+
 app.get("/albums/:id", async (req, res) => {
   const { id } = req.params;
   const album = await Album.findById(id);
