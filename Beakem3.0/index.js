@@ -20,6 +20,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true }));
 app.use(methodOverride("_method"));
 
 app.get("/albums", async (req, res) => {
@@ -38,6 +39,7 @@ app.get("/albums/new", (req, res) => {
 });
 
 app.post("/albums", async (req, res) => {
+  console.log(req.body);
   const newAlbum = new Album(req.body);
   await newAlbum.save();
   res.redirect(`albums/${newAlbum._id}`);

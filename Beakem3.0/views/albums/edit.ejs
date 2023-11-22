@@ -9,28 +9,20 @@
     <h1>Update your album: <%= album.name %></h1>
     <form action="/albums/<%= album._id %>?_method=PATCH" method="POST">
       <label for="name">Album name</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="<%= album.name %>"
-        value="<% album.name %>"
-      />
+      <input type="text" name="name" id="name" value="<%= album.name %>" />
       <label for="rating">Rating</label>
       <input
         type="float"
         name="rating"
         id="rating"
-        placeholder="<%= album.rating %>"
-        value="<% album.rating %>"
+        value="<%= album.rating %>"
       />
       <label for="artist">Artist</label>
       <input
         type="text"
         name="artist"
         id="artist"
-        placeholder="<%= album.artist %>"
-        value="<% album.artist %>"
+        value="<%= album.artist %>"
       />
       <button>Submit</button>
 
