@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Add a new album to your list</h1>
-    <form action="/albums" method="POST">
-      <label for="name">Album name</label>
-      <input type="text" name="name" id="name" />
-      <label for="rating">Rating</label>
-      <input type="float" name="rating" id="rating" />
-      <label for="artist">Artist</label>
-      <input type="text" name="artist" id="artist" />
-      <button>Submit</button>
-    </form>
+<% layout('layouts/boilerplate')%>
+<h1>Add a new album to your list</h1>
+<form action="/albums" method="POST">
+  <label for="name">Album name</label>
+  <input type="text" name="name" id="name" />
+  <label for="rating">Rating</label>
+  <input type="float" name="rating" id="rating" />
+  <label for="artist">Artist</label>
+  <input type="text" name="artist" id="artist" />
+  <button>Submit</button>
+</form>
 
-    <a href="/albums">Cancel</a>
-  </body>
-</html>
+<a href="/albums">Cancel</a>
