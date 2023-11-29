@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beakem</title>
-  </head>
-  <body>
-    <% albums.sort(function (a, b) { %> <%return b.rating - a.rating; %> <% });
-    %>
+<% layout('layouts/boilerplate')%>
 
-    <h1><%= artist %> Albums</h1>
-    <ul>
-      <% for(let album of albums){%>
-      <li>
-        <a href="/albums/<%= album._id %>"><%= album.name %></a>
-        <%=album.rating%>
-      </li>
-      <% } %>
-    </ul>
+<div>
+  <% albums.sort(function (a, b) { %> <%return b.rating - a.rating; %> <% }); %>
 
-    <% if(artist === 'All') {%>
-    <a href="/albums/new">Rate a new album</a>
-    <% } else{ %>
-    <a href="/albums">See all albums</a>
+  <h1><%= artist %> Albums</h1>
+  <ul>
+    <% for(let album of albums){%>
+    <li>
+      <a href="/albums/<%= album._id %>"><%= album.name %></a>
+      <%=album.rating%>
+    </li>
     <% } %>
-  </body>
-</html>
+  </ul>
+
+  <% if(artist === 'All') {%>
+  <a href="/albums/new">Rate a new album</a>
+  <% } else{ %>
+  <a href="/albums">See all albums</a>
+  <% } %>
+</div>
