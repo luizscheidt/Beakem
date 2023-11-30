@@ -19,12 +19,14 @@
       <div class="card mb-3" style="width: 25rem">
         <div class="card-body">
           <h5 class="card-title"><%= album.name %> - <%= album.rating %></h5>
-          <p class="card-text">
-            <%= album.artist %>
-            <a href="/albums/<%= album._id %>" class="btn btn-info me-1"
-              >See album details</a
-            >
-          </p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= album.artist %></li>
+            <li class="list-group-item">
+              <a href="/albums/<%= album._id %>" class="btn btn-info me-1">
+                See album details
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
