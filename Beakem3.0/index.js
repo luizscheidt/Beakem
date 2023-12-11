@@ -4,11 +4,10 @@ const app = express();
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const Joi = require("joi");
+const {albumSchema} = require("./validateSchemas");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
-
 const methodOverride = require("method-override");
-
 const Album = require("./models/album");
 
 mongoose.connect("mongodb://127.0.0.1:27017/albumList"),
@@ -32,6 +31,16 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json({extended: true}));
 app.use(methodOverride("_method"));
 
+const validateAlbum = (req, res, next) => {
+  const {error} = albumSchema.validate(req.body);
+  if (error) {
+    const message = error.details.map((element) => element.message).join(",");
+    throw new ExpressError(message, 400);
+  } else {
+    next();
+  }
+};
+
 app.get(
   "/albums",
   wrapAsync(async (req, res, next) => {
@@ -52,9 +61,10 @@ app.get("/albums/new", (req, res) => {
 
 app.post(
   "/albums",
+  validateAlbum,
   wrapAsync(async (req, res, next) => {
     console.log(req.body);
-    const newAlbum = new Album(req.body);
+    const newAlbum = new Album(req.body.album);
     await newAlbum.save();
     res.redirect(`albums/${newAlbum._id}`);
   })
@@ -80,10 +90,11 @@ app.get(
 
 app.patch(
   "/albums/:id",
+  validateAlbum,
   wrapAsync(async (req, res, next) => {
     const {id} = req.params;
     const album = await Album.findByIdAndUpdate(id, req.body, {
-      runValidators: true,
+      ...req.body.campground,
     });
     res.redirect(`/albums/${album._id}`);
   })
@@ -103,8 +114,9 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  const {status = 500, message = "Something went wrong"} = err;
-  res.status(status).render("error", {err});
+  const {statusCode = 500} = err;
+  if (!err.message) err.message = "Something went wrong";
+  res.status(statusCode).render("error", {err});
 });
 
 app.listen("1200", (req, res) => {
