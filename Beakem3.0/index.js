@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+const Joi = require("joi");
 const methodOverride = require("method-override");
 
 const Album = require("./models/album");
@@ -21,18 +22,18 @@ app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ extended: true }));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json({extended: true}));
 app.use(methodOverride("_method"));
 
 app.get("/albums", async (req, res) => {
-  const { artist } = req.query;
+  const {artist} = req.query;
   if (artist) {
-    const albums = await Album.find({ artist });
-    res.render("albums/index", { albums, artist });
+    const albums = await Album.find({artist});
+    res.render("albums/index", {albums, artist});
   } else {
     const albums = await Album.find({});
-    res.render("albums/index", { albums, artist: "All" });
+    res.render("albums/index", {albums, artist: "All"});
   }
 });
 
@@ -48,19 +49,19 @@ app.post("/albums", async (req, res) => {
 });
 
 app.get("/albums/:id", async (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params;
   const album = await Album.findById(id);
-  res.render("albums/details", { album });
+  res.render("albums/details", {album});
 });
 
 app.get("/albums/:id/edit", async (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params;
   const album = await Album.findById(id);
-  res.render("albums/edit", { album });
+  res.render("albums/edit", {album});
 });
 
 app.patch("/albums/:id", async (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params;
   const album = await Album.findByIdAndUpdate(id, req.body, {
     runValidators: true,
   });
@@ -68,7 +69,7 @@ app.patch("/albums/:id", async (req, res) => {
 });
 
 app.delete("/albums/:id", async (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params;
   const deletedAlbum = await Album.findByIdAndDelete(id);
   res.redirect("/albums");
 });
