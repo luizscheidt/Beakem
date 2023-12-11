@@ -2,29 +2,50 @@
 
 <div class="card">
   <h5 class="card-header">Update your album: <%= album.name %></h5>
-  <form action="/albums/<%= album._id %>?_method=PATCH" method="POST">
-    <div class="row">
-      <div class="col">
+  <form
+    action="/albums/<%= album._id %>?_method=PATCH"
+    method="POST"
+    novalidate
+    class="validated-form"
+  >
+    <div class="row justify-content-around">
+      <div class="col-md-4">
         <label for="name">Album name</label>
-        <input type="text" name="name" id="name" value="<%= album.name %>" />
-      </div>
-      <div class="col">
-        <label for="rating">Rating</label>
         <input
-          type="float"
-          name="rating"
-          id="rating"
-          value="<%= album.rating %>"
+          type="text"
+          name="name"
+          id="name"
+          value="<%= album.name %>"
+          class="form-control"
+          required
         />
+        <div class="invalid-feedback">Please add the album artist.</div>
       </div>
-      <div class="col">
+
+      <div class="col-md-4">
         <label for="artist">Artist</label>
         <input
           type="text"
           name="artist"
           id="artist"
           value="<%= album.artist %>"
+          class="form-control"
+          required
         />
+        <div class="invalid-feedback">Please add the album artist.</div>
+      </div>
+
+      <div class="col-md-1">
+        <label for="rating">Rating</label>
+        <input
+          type="float"
+          name="rating"
+          id="rating"
+          value="<%= album.rating %>"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please add the album artist.</div>
       </div>
       <div class="row">
         <div class="mt-3">
@@ -34,7 +55,7 @@
     </div>
   </form>
 
-  <a href="/albums/<%= album._id %>"
+  <a href="/albums/<%= album._id %>" class="form-control" required
     ><button class="btn btn-dark mt-2">Cancel</button></a
   >
 </div>
