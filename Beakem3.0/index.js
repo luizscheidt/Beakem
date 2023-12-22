@@ -9,6 +9,7 @@ const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const Album = require("./models/album");
+const Artist = require("./models/artist");
 
 mongoose.connect("mongodb://127.0.0.1:27017/albumList"),
   {
@@ -52,6 +53,14 @@ app.get(
       const albums = await Album.find({});
       res.render("albums/index", {albums, artist: "All"});
     }
+  })
+);
+
+app.get(
+  "/artists",
+  wrapAsync(async (req, res) => {
+    const albums = await Album.find({});
+    res.render("artists/index", {albums});
   })
 );
 

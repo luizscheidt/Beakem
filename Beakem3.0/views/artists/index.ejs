@@ -1,0 +1,30 @@
+<% layout('layouts/boilerplate')%>
+
+<h1 style="color: #54b4d3">Artists</h1>
+
+<div>
+  <form action="/albums/new">
+    <button class="btn btn-outline-info mb-5">
+      Add a new album to your list
+    </button>
+  </form>
+</div>
+
+<ul>
+  <% for(let album of albums){%>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <div class="card mb-3" style="width: 25rem">
+        <div class="card-body">
+          <h5 class="card-title"><%= album.artist %></h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= album.artist %></li>
+            <li class="list-group-item"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% } %>
+</ul>
