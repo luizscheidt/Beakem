@@ -64,6 +64,7 @@ app.get(
     for (a of albums) {
       artists.push(a.artist);
     }
+
     res.render("artists/index", {artists});
   })
 );
