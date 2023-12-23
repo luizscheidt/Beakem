@@ -56,14 +56,6 @@ app.get(
   })
 );
 
-// const noRepeat = function (a, b) {
-//   const oneTime = [];
-//   if (a !== b) {
-//     oneTime.push(b);
-//     return oneTime;
-//   }
-// };
-
 app.get(
   "/artists",
   wrapAsync(async (req, res) => {
