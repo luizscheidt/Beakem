@@ -56,11 +56,23 @@ app.get(
   })
 );
 
+// const noRepeat = function (a, b) {
+//   const oneTime = [];
+//   if (a !== b) {
+//     oneTime.push(b);
+//     return oneTime;
+//   }
+// };
+
 app.get(
   "/artists",
   wrapAsync(async (req, res) => {
     const albums = await Album.find({});
-    res.render("artists/index", {albums});
+    const artists = [];
+    for (a of albums) {
+      artists.push(a.artist);
+    }
+    res.render("artists/index", {artists});
   })
 );
 

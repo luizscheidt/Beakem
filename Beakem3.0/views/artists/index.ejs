@@ -10,15 +10,17 @@
   </form>
 </div>
 
+<% const noRepeat = [...new Set(artists)] %>
+
 <ul>
-  <% for(let album of albums){%>
+  <% for(let artist of noRepeat){%>
   <div class="row justify-content-md-center">
     <div class="col-md-4">
       <div class="card mb-3" style="width: 25rem">
         <div class="card-body">
-          <h5 class="card-title"><%= album.artist %></h5>
+          <h5 class="card-title"><%= artist %></h5>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><%= album.artist %></li>
+            <li class="list-group-item"><%= artist %></li>
             <li class="list-group-item"></li>
           </ul>
         </div>
