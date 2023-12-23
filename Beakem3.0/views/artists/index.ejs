@@ -20,8 +20,14 @@
         <div class="card-body">
           <h5 class="card-title"><%= artist %></h5>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><%= artist %></li>
-            <li class="list-group-item"></li>
+            <li class="list-group-item">Genre(Soon)</li>
+            <li class="list-group-item">
+              <a href="/albums?artist=<%= artist %>">
+                <button class="btn btn-info">
+                  See your rated <%= artist %> albums
+                </button>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
