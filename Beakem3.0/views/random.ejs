@@ -1,5 +1,15 @@
 <% layout('layouts/boilerplate') %>
 
 <form action="albums/<%= album._id %>">
-  <button>Find album</button>
+  <div class="row">
+    <div class="col-6 offset-3 container">
+      <section class="text-center">
+        <h3 style="color: aliceblue">
+          Don't know what you want to listen to right now?
+        </h3>
+        <h3 style="color: aliceblue">Find a random album from your list</h3>
+      </section>
+      <button class="col-2 offset-5 btn btn-light">Find album</button>
+    </div>
+  </div>
 </form>
