@@ -68,6 +68,21 @@ app.get(
   })
 );
 
+const randomAlbum = async (albums) => {
+  x = Math.floor(Math.random() * albums.length);
+  return albums[x];
+};
+
+app.get(
+  "/random",
+  wrapAsync(async (req, res) => {
+    const albums = await Album.find({});
+    const album = await randomAlbum(albums);
+    album.save();
+    res.render("random", {album, randomAlbum});
+  })
+);
+
 app.get("/albums/new", (req, res) => {
   res.render("albums/new");
 });
