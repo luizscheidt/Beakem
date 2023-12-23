@@ -1,16 +1,9 @@
 <% layout('layouts/boilerplate')%>
 
+<div><% const noRepeat = [...new Set(artists)] %></div>
+<div><% noRepeat.sort() %></div>
+
 <h1 style="color: #54b4d3">Artists</h1>
-
-<div>
-  <form action="/albums/new">
-    <button class="btn btn-outline-info mb-5">
-      Add a new album to your list
-    </button>
-  </form>
-</div>
-
-<% const noRepeat = [...new Set(artists)] %>
 
 <ul>
   <% for(let artist of noRepeat){%>
