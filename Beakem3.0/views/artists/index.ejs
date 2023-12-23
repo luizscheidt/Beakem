@@ -1,5 +1,5 @@
-<% layout('layouts/boilerplate')%>
-
+<% layout('layouts/boilerplate')%> <% const counter = {}; artists.forEach(him =>
+{ if (counter[him]) { counter[him] += 1; } else { counter[him] = 1; } }); %>
 <div><% const noRepeat = [...new Set(artists)] %></div>
 <div><% noRepeat.sort() %></div>
 
@@ -13,7 +13,10 @@
         <div class="card-body">
           <h5 class="card-title"><%= artist %></h5>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Genre(Soon)</li>
+            <li class="list-group-item">
+              <% if(counter[artist]> 1){ %> <%= counter[artist] %> albums rated
+              <% }else { %> <%= counter[artist] %> album rated <% } %>
+            </li>
             <li class="list-group-item">
               <a href="/albums?artist=<%= artist %>">
                 <button class="btn btn-info">
